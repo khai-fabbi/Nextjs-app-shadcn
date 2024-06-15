@@ -98,3 +98,10 @@ export function isArrayOfFile(files: unknown): files is File[] {
 export function absoluteUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_APP_URL}${path}`
 }
+
+export const convertToVND = (value: number) =>
+  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
+    value
+  )
+
+export const goToTop = () => window.scrollTo(0, 0)
