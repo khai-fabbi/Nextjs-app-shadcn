@@ -20,3 +20,14 @@ export enum Gender {
   Female = 1,
   Male = 2,
 }
+
+export enum EUserStatus {
+  ACTIVE = 'ACTIVE',
+  UNACTIVE = 'UNACTIVE',
+  BANNED = 'BANNED',
+}
+export enum EUserRole {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  EXPERT = 'EXPERT',
+}
