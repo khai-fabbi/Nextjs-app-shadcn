@@ -31,3 +31,18 @@ export enum EUserRole {
   USER = 'USER',
   EXPERT = 'EXPERT',
 }
+
+export enum ECourseStatus {
+  APPROVED = 'APPROVED',
+  PENDING = 'PENDING',
+  REJECTED = 'REJECTED',
+}
+export enum ECourseLevel {
+  BEGINNER = 'BEGINNER',
+  INTERMEDIATE = 'INTERMEDIATE',
+  ADVANCED = 'ADVANCED',
+}
+export enum ELessonType {
+  VIDEO = 'VIDEO',
+  TEXT = 'TEXT',
+}

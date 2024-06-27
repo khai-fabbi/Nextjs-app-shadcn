@@ -3,25 +3,25 @@ import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 export default clerkMiddleware()
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  const { url, nextUrl, cookies } = request
-  const accessToken = cookies.get('access_token')?.value
-  const pathname = nextUrl.pathname
+// export function middleware(request: NextRequest) {
+//   const { url, nextUrl, cookies } = request
+//   const accessToken = cookies.get('access_token')?.value
+//   const pathname = nextUrl.pathname
 
-  // if (!accessToken) {
-  //   const searchParams = new URLSearchParams(nextUrl.searchParams)
-  //   searchParams.set('next', pathname)
+//   // if (!accessToken) {
+//   //   const searchParams = new URLSearchParams(nextUrl.searchParams)
+//   //   searchParams.set('next', pathname)
 
-  //   const response = NextResponse.redirect(
-  //     new URL(`/sign-in?${searchParams}`, {})
-  //   )
-  //   cookies.delete('access_token')
-  //   return response
-  // }
-  return NextResponse.next()
-}
+//   //   const response = NextResponse.redirect(
+//   //     new URL(`/sign-in?${searchParams}`, {})
+//   //   )
+//   //   cookies.delete('access_token')
+//   //   return response
+//   // }
+//   return NextResponse.next()
+// }
 
-// See "Matching Paths" below to learn more
+// // See "Matching Paths" below to learn more
 // export const config = {
 //   matcher: [
 //     /*

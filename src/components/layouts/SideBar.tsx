@@ -4,6 +4,7 @@ import {
   MapIcon,
   ShoppingCart,
   Users,
+  Zap,
 } from 'lucide-react'
 import Link from 'next/link'
 import { MenuItem } from '../common'
@@ -23,6 +24,11 @@ const SIDE_BAR_LIST = [
     label: 'Giới thiệu',
     href: '/about',
     icon: <CircleUserRound />,
+  },
+  {
+    label: 'Quản lý khóa học',
+    href: '/manage/course',
+    icon: <Zap />,
   },
   {
     label: 'Quản lý thành viên',

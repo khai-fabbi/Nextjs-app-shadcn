@@ -16,7 +16,6 @@ import Link from 'next/link'
 const TopBar = () => {
   const { setTheme } = useTheme()
   const { userId } = useAuth()
-  console.log('🚀 ~ TopBar ~ userId:', userId)
 
   return (
     <header className='min-h-16 flex justify-between p-4 border-b border-gray-200'>
