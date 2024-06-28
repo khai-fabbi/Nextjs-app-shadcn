@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { manropeFont } from '@/lib/fonts'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
+import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -25,6 +26,14 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster
+              toastOptions={{
+                position: 'bottom-right',
+                duration: 3000,
+                success: {},
+                error: {},
+              }}
+            />
           </ThemeProvider>
         </body>
       </html>

@@ -41,12 +41,15 @@ const courseSchema = new Schema<ICourse>({
   },
   desc: {
     type: String,
+    default: '',
   },
   image: {
     type: String,
+    default: '',
   },
   intro_url: {
     type: String,
+    default: '',
   },
   price: {
     type: Number,
@@ -118,6 +121,6 @@ const courseSchema = new Schema<ICourse>({
   },
 })
 
-const Course = models.Course || model<ICourse>('User', courseSchema)
+const Course = models.Course || model<ICourse>('Course', courseSchema)
 
 export default Course

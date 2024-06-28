@@ -5,3 +5,8 @@ export type TCreateUser = {
   name?: string
   avatar?: string
 }
+
+export type TCreateCourse = {
+  title: string
+  slug: string
+}

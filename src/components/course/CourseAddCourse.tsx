@@ -14,8 +14,10 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { toast } from '@/components/ui/use-toast'
 import slugify from 'slugify'
+import { createCourse } from '@/lib/actions/course.actions'
+import { Loading } from '../common'
+import toast from 'react-hot-toast'
 
 const FormSchema = z.object({
   title: z.string().min(10, {
@@ -33,7 +35,7 @@ export default function CourseAddCourse() {
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     const formData = {
       ...data,
       slug:
@@ -45,20 +47,21 @@ export default function CourseAddCourse() {
           trim: true,
         }),
     }
-    console.log(formData)
-
-    // toast({
-    //   title: 'You submitted the following values:',
-    //   description: (
-    //     <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-    //       <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-    //     </pre>
-    //   ),
-    // })
+    try {
+      const newCourse = await createCourse(formData)
+      console.log(newCourse?.data)
+      toast.success('Đã tạo mới khóa học.')
+    } catch (error) {
+      console.log(error)
+      toast.error('Có lỗi xảy ra. Vui lòng thử lại!')
+    } finally {
+      form.reset()
+    }
   }
 
   return (
     <Form {...form}>
+      {form.formState.isSubmitting && <Loading />}
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className='grid grid-cols-2 gap-8'>
           <FormField
