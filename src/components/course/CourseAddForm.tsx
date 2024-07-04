@@ -14,19 +14,25 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import slugify from 'slugify'
 import { createCourse } from '@/lib/actions/course.actions'
-import { Loading } from '../common'
 import toast from 'react-hot-toast'
+import slugify from 'slugify'
+import { Loading } from '../common'
+import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
   title: z.string().min(10, {
     message: 'Tên khóa học ít nhất 10 kí tự',
   }),
   slug: z.string(),
+  author: z.string().optional(),
 })
 
-export default function CourseAddCourse() {
+interface CourseAddFormProps {
+  userId: string
+}
+export default function CourseAddForm({ userId }: CourseAddFormProps) {
+  const router = useRouter()
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,16 +52,22 @@ export default function CourseAddCourse() {
           locale: 'vi',
           trim: true,
         }),
+      author: userId,
     }
     try {
       const newCourse = await createCourse(formData)
-      console.log(newCourse?.data)
-      toast.success('Đã tạo mới khóa học.')
+
+      if (newCourse.message === 'OK') {
+        toast.success('Đã tạo mới khóa học.')
+        router.push(`/manage/course/update?slug=${newCourse.data.slug}`)
+      } else {
+        toast.error(newCourse.message)
+      }
     } catch (error) {
       console.log(error)
       toast.error('Có lỗi xảy ra. Vui lòng thử lại!')
     } finally {
-      form.reset()
+      // form.reset()
     }
   }
 

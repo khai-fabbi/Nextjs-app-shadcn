@@ -1,3 +1,5 @@
+import { ICourse } from '@/database/course.model'
+
 export type TCreateUser = {
   clerkId: string
   username: string
@@ -9,4 +11,12 @@ export type TCreateUser = {
 export type TCreateCourse = {
   title: string
   slug: string
+  author: string
+}
+
+export type TUpdateCourse = {
+  slug: string
+  info: Partial<ICourse> & {
+    info?: Partial<ICourse['info']>
+  }
 }

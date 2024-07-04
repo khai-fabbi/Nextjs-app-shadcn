@@ -7,10 +7,10 @@ const Study = () => {
     <section>
       <Heading>Khu vực học tập</Heading>
       <div className='grid grid-cols-4 gap-8'>
+        {/* <CourseItem />
         <CourseItem />
         <CourseItem />
-        <CourseItem />
-        <CourseItem />
+        <CourseItem /> */}
       </div>
     </section>
   )

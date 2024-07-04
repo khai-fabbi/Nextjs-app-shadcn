@@ -1,15 +1,21 @@
+import { ICourse } from '@/database/course.model'
 import { convertToVND } from '@/lib/utils'
 import { Clock, EyeIcon, StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-const CourseItem = () => {
+
+interface CourseItemProps {
+  data: ICourse
+}
+
+const CourseItem = ({ data }: CourseItemProps) => {
   const courseInfo = [
     {
-      title: '3000',
+      title: data.views,
       icon: (className?: string) => <EyeIcon className={className}></EyeIcon>,
     },
     {
-      title: '5.0',
+      title: data.rating[0],
       icon: (className?: string) => <StarIcon className={className}></StarIcon>,
     },
     {
@@ -18,8 +24,8 @@ const CourseItem = () => {
     },
   ]
   return (
-    <div className='bg-white border border-gray-200 p-4 rounded-2xl'>
-      <Link href='#' className='block h-[200px] relative'>
+    <div className='bg-white border border-gray-200 p-4 rounded-2xl shadow-md'>
+      <Link href={`/course/${data.slug}`} className='block h-[200px] relative'>
         <Image
           src='https://images.unsplash.com/photo-1614082164181-ff8380557f60?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
           alt=''
@@ -34,9 +40,7 @@ const CourseItem = () => {
         </span>
       </Link>
       <div className='pt-4'>
-        <h3 className='font-bold text-lg mb-3'>
-          Khóa học NextJS Pro - Xây dựng E-Learning system hoàn chỉnh
-        </h3>
+        <h3 className='font-bold text-lg mb-3'>{data.title}</h3>
         <div className='flex items-center gap-3 mb-5 text-xs text-gray-500'>
           {courseInfo.map((item, index) => (
             <div className='flex items-center gap-2' key={index}>
@@ -46,12 +50,12 @@ const CourseItem = () => {
           ))}
 
           <span className='font-bold text-primary ml-auto text-base'>
-            {convertToVND(999000)}
+            {convertToVND(data.sale_price)}
           </span>
         </div>
 
         <Link
-          href='#'
+          href={`/course/${data.slug}`}
           className='flex items-center justify-center w-full mt-10 rounded-lg text-white font-semibold bg-primary h-12'
         >
           Xem chi tiết
